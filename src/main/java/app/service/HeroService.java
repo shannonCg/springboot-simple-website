@@ -19,9 +19,9 @@ public class HeroService {
     @Autowired
     private HeroRepository dao;
 
-    public void add(HeroVO vo){
+    public HeroTO add(HeroVO vo){
         Hero entity = new Hero();
-        saveByVO(entity, vo);
+        return HeroTO.convertFrom(saveByVO(entity, vo));
     }
 
     public void update(Integer id, HeroVO vo){
@@ -29,9 +29,9 @@ public class HeroService {
         saveByVO(entity, vo);
     }
 
-    private void saveByVO(Hero entity, HeroVO vo){
+    private Hero saveByVO(Hero entity, HeroVO vo){
         entity.setHeroName(vo.getName());
-        dao.save(entity);
+        return dao.save(entity);
     }
 
     public void deleteById(Integer id){
@@ -53,5 +53,12 @@ public class HeroService {
         return StreamSupport.stream(dao.findAll().spliterator(), false)
                             .map(e -> HeroTO.convertFrom(e))
                             .collect(Collectors.toList());
+    }
+
+    public List<HeroTO> findByName(String name){
+        return dao.findByHeroNameContainingIgnoreCase(name)
+                .stream()
+                .map(e -> HeroTO.convertFrom(e))
+                .collect(Collectors.toList());
     }
 }

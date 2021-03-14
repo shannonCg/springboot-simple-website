@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.model.to.HeroTO;
@@ -28,8 +29,8 @@ public class HeroController {
     private HeroService service;
 
     @PostMapping()
-	public void create(@Valid @RequestBody HeroVO vo)  {
-        service.add(vo);
+	public HeroTO create(@Valid @RequestBody HeroVO vo)  {
+        return service.add(vo);
 	}
 
     @PutMapping("{id}")
@@ -52,4 +53,8 @@ public class HeroController {
         return service.getAlls();
 	}
 
+	@GetMapping("search")
+	public List<HeroTO> findByName(@RequestParam("name") String name){
+		return service.findByName(name);
+	}
 }

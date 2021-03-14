@@ -18,3 +18,4 @@ GET  http://localhost:8080/api/heroes/1 HTTP/1.1
 ###
 DELETE  http://localhost:8080/api/heroes/1 HTTP/1.1
 ###
+GET http://localhost:8080/api/heroes/search?name=a HTTP/1.1
