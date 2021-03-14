@@ -1,0 +1,22 @@
+POST http://localhost:8080/api/heroes HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "name": "Alice"
+}
+###
+PUT http://localhost:8080/api/heroes/1 HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "name": "John"
+}
+###
+GET  http://localhost:8080/api/heroes HTTP/1.1
+###
+GET  http://localhost:8080/api/heroes/1 HTTP/1.1
+###
+DELETE  http://localhost:8080/api/heroes/10 HTTP/1.1
+###
