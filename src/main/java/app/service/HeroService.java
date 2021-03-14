@@ -30,7 +30,6 @@ public class HeroService {
     }
 
     private void saveByVO(Hero entity, HeroVO vo){
-        entity.setHeroId(vo.getId());
         entity.setHeroName(vo.getName());
         dao.save(entity);
     }
