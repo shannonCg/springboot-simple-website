@@ -6,7 +6,7 @@
 
   <groupId>com.shaice</groupId>
   <artifactId>springboot-simple-website</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>springboot-simple-website</name>
 
