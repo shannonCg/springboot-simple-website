@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import app.Application;
 import app.model.to.HeroTO;
 import app.model.vo.HeroVO;
 import app.service.HeroService;
@@ -25,11 +28,14 @@ import app.service.HeroService;
 @CrossOrigin(origins = "http://localhost:4200")
 public class HeroController {
     
+	private static final Logger LOGGER = LoggerFactory.getLogger(HeroController.class);
+
     @Autowired
     private HeroService service;
 
     @PostMapping()
 	public HeroTO create(@Valid @RequestBody HeroVO vo)  {
+		LOGGER.info("create hero[name={}]", vo.getName());
         return service.add(vo);
 	}
 
@@ -45,6 +51,7 @@ public class HeroController {
 
 	@GetMapping("{id}")
 	public HeroTO getById(@PathVariable("id") Integer id){
+		LOGGER.info("query hero[id={}]", id);
 		return service.getById(id);
 	}
 
